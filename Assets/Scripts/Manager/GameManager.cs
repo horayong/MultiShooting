@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager GM;
+    public static GameManager Instance { set; get; }
+    public int maxPlayers = 4;
     void Awake()
     {
-        GM = this;   
+        Instance = this;   
     }
 
     
