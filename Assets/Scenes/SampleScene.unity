@@ -322,6 +322,8 @@ MonoBehaviour:
   characterSprite:
   - {fileID: 21300000, guid: fe182251bb60f3e4f81d5de00e5085bc, type: 3}
   - {fileID: 21300000, guid: 83d6a2541be70284b9345f28fb194a30, type: 3}
+  characterScript: []
+  myCharacterIdx: 0
 --- !u!1 &239086756
 GameObject:
   m_ObjectHideFlags: 0
@@ -1087,7 +1089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f48111ac54499b246b71e51f47264c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxPlayers: 4
+  maxPlayers: 2
+  myCharacter: {fileID: 0}
 --- !u!1 &961058409
 GameObject:
   m_ObjectHideFlags: 0
@@ -1691,6 +1694,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1445912374}
   - component: {fileID: 1445912375}
+  - component: {fileID: 1445912376}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1725,6 +1729,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701c4ede2d4f6b64c9e586333e5f0851, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1445912376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1445912373}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1448424113
 GameObject:
   m_ObjectHideFlags: 0

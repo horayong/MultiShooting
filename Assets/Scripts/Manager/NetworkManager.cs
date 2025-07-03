@@ -7,6 +7,7 @@ using UnityEngine;
 public class NetworkManager : MonoBehaviourPunCallbacks
 {
     public static NetworkManager Instance { set; get; }
+    private int readyPlayerCount = 0;
     void Awake()
     {
         Instance = this;
@@ -18,7 +19,8 @@ public class NetworkManager : MonoBehaviourPunCallbacks
     }
     public override void OnJoinedRoom()
     {
-        PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //GameObject temp = PhotonNetwork.Instantiate("Player", Vector3.zero, Quaternion.identity);
+        //GameManager.Instance.myCharacter = temp;
     }
     public override void OnPlayerPropertiesUpdate(Player targetPlayer, ExitGames.Client.Photon.Hashtable changedProps)
     {
@@ -28,5 +30,24 @@ public class NetworkManager : MonoBehaviourPunCallbacks
             ReadyUI.Instance.UpdatePortraitUI(targetPlayer, selected);
         }
     }
-    
+    public void AddReadyPlayer()
+    {
+        photonView.RPC("AddReadyPlayerPun", RpcTarget.MasterClient);
+    }
+    [PunRPC]
+    public void AddReadyPlayerPun()
+    {
+        readyPlayerCount++;
+        // 마스터 클라이언트에서만 InitGame 호출 판단
+        if (PhotonNetwork.IsMasterClient && readyPlayerCount >= GameManager.Instance.maxPlayers)
+        {
+            photonView.RPC("StartGamePun", RpcTarget.All);
+        }
+    }
+
+    [PunRPC]
+    public void StartGamePun()
+    {
+        GameManager.Instance.InitGame();
+    }
 }
